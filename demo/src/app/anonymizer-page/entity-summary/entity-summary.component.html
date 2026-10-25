@@ -1,0 +1,9 @@
+<h2 class="section-label">{{ 'page.summary' | translate }}</h2>
+<ul class="entity-summary">
+  @for (item of counts(); track item.type) {
+    <li class="entity-summary__item">
+      <span class="entity-summary__count">{{ item.count }}</span>
+      {{ 'entityTypes.' + item.type | translate }}
+    </li>
+  }
+</ul>

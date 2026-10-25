@@ -1,0 +1,215 @@
+// Sora is self-hosted (@fontsource-variable/sora, see angular.json): no request to a third-party CDN
+:root {
+  --color-surface: #ffffff;
+  --color-box: #f5f3ee;
+  --color-action: #39477f;
+  --color-action-hover: #2c3765;
+  --color-text: #1c1f2a;
+  --color-muted: #545a69;
+  --color-faint: #6b7080;
+  --color-border: #ebe8e0;
+  --color-border-strong: #cfcabd;
+  --color-highlight: #e3e6f2;
+  --color-error: #a12a2a;
+  --radius: 6px;
+  --content-width: 1440px;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: 'Sora Variable', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+.box {
+  border-radius: var(--radius);
+  background: var(--color-box);
+}
+
+.section-label {
+  margin: 0 0 0.75rem;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.error-message {
+  margin: 0;
+  color: var(--color-error);
+  font-size: 0.875rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// Buttons, also used on links (exports) and labels (file picker)
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.button--primary {
+  background: var(--color-action);
+  color: #ffffff;
+
+  &:hover:not(:disabled) {
+    background: var(--color-action-hover);
+  }
+}
+
+.button--secondary {
+  border-color: var(--color-action);
+  background: var(--color-surface);
+  color: var(--color-action);
+
+  &:hover:not(:disabled) {
+    background: var(--color-highlight);
+  }
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-action);
+
+  &:hover:not(:disabled) {
+    background: var(--color-box);
+  }
+}
+
+// Toggle group (language, PDF/text view): the pressed option is filled
+.segmented {
+  display: inline-flex;
+  padding: 0.1875rem;
+  border-radius: var(--radius);
+  background: var(--color-box);
+}
+
+.segmented__option {
+  min-height: 2.125rem;
+  padding: 0.25rem 0.875rem;
+  border: none;
+  border-radius: calc(var(--radius) - 2px);
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  &[aria-pressed='true'] {
+    background: var(--color-action);
+    color: #ffffff;
+  }
+
+  &:hover:not([aria-pressed='true']) {
+    color: var(--color-text);
+  }
+}
+
+// Document rendered from Markdown (inserted with [innerHTML], so outside component style scopes)
+.rendered-markdown {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 1.5em 0 0.5em;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h1,
+  h2 {
+    font-size: 1.0625rem;
+  }
+
+  p,
+  ul,
+  ol {
+    margin: 0 0 0.875em;
+  }
+
+  table {
+    width: 100%;
+    margin: 0 0 1em;
+    border-collapse: collapse;
+    background: var(--color-surface);
+    font-size: 0.8125rem;
+  }
+
+  th,
+  td {
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--color-border-strong);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  // Detected values (original side) and their placeholders (anonymized side)
+  .entity {
+    padding: 0 0.15em;
+    border-radius: 3px;
+    background: var(--color-highlight);
+    color: inherit;
+  }
+
+  .entity--placeholder {
+    color: var(--color-action);
+    font-weight: 600;
+  }
+}

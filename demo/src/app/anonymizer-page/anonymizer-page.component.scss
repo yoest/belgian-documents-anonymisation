@@ -1,0 +1,77 @@
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+// Upload, progress and error boxes are centred vertically in the available space
+:host(.page--centered) {
+  justify-content: center;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem;
+}
+
+.status__title {
+  margin: 0;
+  font-weight: 500;
+}
+
+.status__hint {
+  margin: 0.25rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.spinner {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--color-border-strong);
+  border-top-color: var(--color-action);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 3s;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.toolbar__filename {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.toolbar__stats {
+  margin: 0.25rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.toolbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -1,0 +1,43 @@
+services:
+  core:
+    build:
+      context: ./core
+      target: runtime
+    image: belgian-anonymizer-core
+    ports:
+      - "8000:8000"
+    environment:
+      ANONYMIZER_CONFIG_PATH: /app/configs/config-dev.json
+    # For production, mount the (gitignored) prod config instead:
+    # environment:
+    #   ANONYMIZER_CONFIG_PATH: /app/configs/config-prod.json
+    # volumes:
+    #   - ./core/configs/config-prod.json:/app/configs/config-prod.json:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+
+  demo:
+    build:
+      context: ./demo
+    image: belgian-anonymizer-demo
+    ports:
+      - "4200:4000"
+    environment:
+      # The browser only talks to the demo, which forwards /api to the core service
+      CORE_API_URL: http://core:8000
+      # Host names allowed by Angular SSR (protection against Host header attacks)
+      NG_ALLOWED_HOSTS: localhost,127.0.0.1
+    depends_on:
+      core:
+        condition: service_healthy
+    read_only: true
+    restart: unless-stopped
+
+  core-tests:
+    build:
+      context: ./core
+      target: dev
+    image: belgian-anonymizer-core-dev
+    profiles: ["test"]

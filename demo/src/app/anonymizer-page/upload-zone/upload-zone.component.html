@@ -1,0 +1,25 @@
+<div class="upload-zone box">
+  <div class="upload-zone__group">
+    <svg class="upload-zone__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 16V4m0 0-4.5 4.5M12 4l4.5 4.5M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" />
+    </svg>
+    <p class="upload-zone__title">{{ 'upload.drop' | translate }}</p>
+  </div>
+  <div class="upload-zone__group">
+    <!-- The visible button opens the native picker: drag and drop is only a shortcut -->
+    <label class="button button--primary upload-zone__button">
+      {{ 'upload.browse' | translate }}
+      <input
+        class="visually-hidden"
+        type="file"
+        accept="application/pdf,.pdf"
+        aria-describedby="upload-hint"
+        (change)="onFileInput($event)"
+      />
+    </label>
+    <p id="upload-hint" class="upload-zone__hint">{{ 'upload.hint' | translate: errorParams() }}</p>
+    @if (error(); as error) {
+      <p class="error-message" role="alert">{{ 'upload.' + error | translate: errorParams() }}</p>
+    }
+  </div>
+</div>

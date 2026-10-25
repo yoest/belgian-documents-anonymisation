@@ -1,0 +1,63 @@
+:host {
+  display: block;
+}
+
+// Two groups (what to do / how to do it), spaced apart and centred in a tall box
+.upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  min-height: clamp(20rem, 55vh, 32rem);
+  padding: 3rem 1.5rem;
+  border: 1px dashed var(--color-border-strong);
+  text-align: center;
+  transition: border-color 0.15s ease;
+}
+
+:host(.upload-zone--dragging) .upload-zone {
+  border-color: var(--color-action);
+  border-style: solid;
+}
+
+.upload-zone__group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.upload-zone__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: none;
+  stroke: var(--color-action);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.upload-zone__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.upload-zone__button {
+  min-width: 15rem;
+  min-height: 2.75rem;
+}
+
+.upload-zone__hint {
+  max-width: 32rem;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+// The hidden input sits inside the label: show the focus ring on the label instead
+label:focus-within {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}

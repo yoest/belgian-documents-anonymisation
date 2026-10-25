@@ -1,0 +1,22 @@
+<header class="header">
+  <div class="header__content">
+    <div class="header__brand">
+      <!-- Decorative: the title next to it already names the app -->
+      <img class="header__logo" ngSrc="favicon.svg" width="40" height="40" alt="" priority />
+      <div>
+        <h1 class="header__title">{{ 'app.title' | translate }}</h1>
+        <p class="header__subtitle">{{ 'app.subtitle' | translate }}</p>
+      </div>
+    </div>
+    <esty-language-switch />
+  </div>
+</header>
+<main class="main">
+  <router-outlet />
+</main>
+<footer class="footer">
+  {{ 'app.createdBy' | translate }}
+  <a href="https://estytech.com" target="_blank" rel="noopener"
+    >Estytech<span class="visually-hidden"> {{ 'app.newTab' | translate }}</span></a
+  >
+</footer>

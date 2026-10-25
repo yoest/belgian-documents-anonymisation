@@ -1,0 +1,53 @@
+{
+  "app": {
+    "createdBy": "Créé par",
+    "language": "Langue",
+    "newTab": "(s'ouvre dans un nouvel onglet)",
+    "subtitle": "Retirez les données personnelles des documents belges avant de les envoyer à un LLM.",
+    "title": "Anonymiseur de documents belges"
+  },
+  "comparison": {
+    "anonymized": "Anonymisé",
+    "markdown": "Markdown",
+    "original": "Original",
+    "pageAlt": "Page {{page}} sur {{total}}",
+    "pagesRegion": "Pages ({{label}})",
+    "pdf": "PDF",
+    "textRegion": "Texte ({{label}})",
+    "viewMode": "Affichage du document original"
+  },
+  "entityTypes": {
+    "ADDRESS": "Adresse",
+    "DATE_OF_BIRTH": "Date de naissance",
+    "EMAIL": "E-mail",
+    "ENTERPRISE_NUMBER": "Numéro d'entreprise",
+    "IBAN": "Compte bancaire",
+    "ID_CARD_NUMBER": "Numéro de carte d'identité",
+    "LICENSE_PLATE": "Plaque d'immatriculation",
+    "NATIONAL_NUMBER": "Numéro national",
+    "ORGANIZATION": "Organisation",
+    "PERSON": "Personne",
+    "PHONE": "Téléphone"
+  },
+  "errors": {
+    "generic": "Le document n'a pas pu être anonymisé. Veuillez réessayer.",
+    "invalidPdf": "Ce PDF ne peut pas être traité. Les documents scannés ou protégés par mot de passe ne sont pas encore pris en charge.",
+    "tooLarge": "Ce fichier est trop volumineux.",
+    "unavailable": "Le service d'anonymisation est indisponible. Vérifiez qu'il est démarré."
+  },
+  "page": {
+    "anonymizing": "Anonymisation de {{filename}}…",
+    "anonymizingHint": "La détection s'exécute sur ce serveur et prend environ une seconde par page.",
+    "exportMarkdown": "Exporter en Markdown",
+    "newDocument": "Nouveau document",
+    "stats": "{{pages}} page(s) · {{entities}} valeurs remplacées · {{seconds}} s",
+    "summary": "Valeurs remplacées"
+  },
+  "upload": {
+    "browse": "Choisir un PDF",
+    "drop": "Déposez un document ici",
+    "hint": "PDF textuel, {{max}} Mo maximum. Le fichier est traité sur ce serveur et n'est jamais envoyé à un LLM.",
+    "invalidType": "Seuls les fichiers PDF sont acceptés.",
+    "tooLarge": "Ce fichier dépasse {{max}} Mo."
+  }
+}

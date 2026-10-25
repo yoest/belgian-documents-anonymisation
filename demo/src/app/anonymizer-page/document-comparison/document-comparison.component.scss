@@ -1,0 +1,54 @@
+:host {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+// Same height on both sides so that the toggle does not shift the anonymized pane
+.pane__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.5rem;
+  margin-bottom: 0.5rem;
+
+  .section-label {
+    margin: 0;
+  }
+}
+
+// The rendered Markdown itself is styled globally (.rendered-markdown): it is not part of this template
+.pane__document {
+  height: 75vh;
+  min-height: 24rem;
+  overflow: auto;
+  padding: 1.5rem;
+}
+
+.pane__pages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.pane__page {
+  display: block;
+  width: 100%;
+  height: auto;
+  // A4 ratio until the image is loaded (so lazy loading works), then the page's real ratio
+  aspect-ratio: auto 210 / 297;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}

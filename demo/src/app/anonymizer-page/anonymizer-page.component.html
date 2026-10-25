@@ -1,0 +1,41 @@
+@if (!file()) {
+  <esty-upload-zone [maxSizeMb]="maxUploadSizeMb" (fileSelected)="onFileSelected($event)" />
+} @else if (anonymization.isLoading()) {
+  <div class="status box" role="status">
+    <span class="spinner" aria-hidden="true"></span>
+    <div>
+      <p class="status__title">{{ 'page.anonymizing' | translate: { filename: file()?.name } }}</p>
+      <p class="status__hint">{{ 'page.anonymizingHint' | translate }}</p>
+    </div>
+  </div>
+} @else if (errorKey(); as errorKey) {
+  <div class="status box">
+    <p class="error-message" role="alert">{{ errorKey | translate }}</p>
+    <button type="button" class="button button--secondary" (click)="startOver()">
+      {{ 'page.newDocument' | translate }}
+    </button>
+  </div>
+} @else if (result(); as result) {
+  <div class="toolbar">
+    <div class="toolbar__document">
+      <h2 class="toolbar__filename">{{ result.filename }}</h2>
+      <p class="toolbar__stats">{{ 'page.stats' | translate: stats() }}</p>
+    </div>
+    <div class="toolbar__actions">
+      <button type="button" class="button button--ghost" (click)="startOver()">
+        {{ 'page.newDocument' | translate }}
+      </button>
+      <a class="button button--primary" [href]="exportMarkdownUrl()" download>
+        {{ 'page.exportMarkdown' | translate }}
+      </a>
+    </div>
+  </div>
+
+  <esty-entity-summary [entities]="result.entities" />
+
+  <esty-document-comparison
+    [markdown]="result.originalText"
+    [entities]="result.entities"
+    [originalPageUrls]="originalPageUrls()"
+  />
+}

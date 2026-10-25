@@ -1,0 +1,66 @@
+<section class="pane" aria-labelledby="pane-title-original">
+  <div class="pane__header">
+    <h2 class="section-label" id="pane-title-original">{{ 'comparison.original' | translate }}</h2>
+    <div class="segmented" role="group" [attr.aria-label]="'comparison.viewMode' | translate">
+      @for (view of originalViews; track view) {
+        <button
+          type="button"
+          class="segmented__option"
+          [attr.aria-pressed]="originalView() === view"
+          (click)="originalView.set(view)"
+        >
+          {{ 'comparison.' + view | translate }}
+        </button>
+      }
+    </div>
+  </div>
+  <!-- Panes are focusable so that keyboard users can scroll them -->
+  @if (originalView() === 'pdf') {
+    <div
+      class="pane__document pane__pages box"
+      tabindex="0"
+      role="region"
+      [attr.aria-label]="
+        'comparison.pagesRegion' | translate: { label: ('comparison.original' | translate) }
+      "
+    >
+      @for (url of originalPageUrls(); track url; let index = $index) {
+        <img
+          class="pane__page"
+          loading="lazy"
+          [src]="url"
+          [alt]="
+            'comparison.pageAlt' | translate: { page: index + 1, total: originalPageUrls().length }
+          "
+        />
+      }
+    </div>
+  } @else {
+    <div
+      class="pane__document box rendered-markdown"
+      tabindex="0"
+      role="region"
+      [attr.aria-label]="
+        'comparison.textRegion' | translate: { label: ('comparison.original' | translate) }
+      "
+      [innerHTML]="markdown() | highlightedMarkdown: entities() : 'original' : typeLabels()"
+    ></div>
+  }
+</section>
+
+<section class="pane" aria-labelledby="pane-title-anonymized">
+  <div class="pane__header">
+    <h2 class="section-label" id="pane-title-anonymized">
+      {{ 'comparison.anonymized' | translate }}
+    </h2>
+  </div>
+  <div
+    class="pane__document box rendered-markdown"
+    tabindex="0"
+    role="region"
+    [attr.aria-label]="
+      'comparison.textRegion' | translate: { label: ('comparison.anonymized' | translate) }
+    "
+    [innerHTML]="markdown() | highlightedMarkdown: entities() : 'anonymized' : typeLabels()"
+  ></div>
+</section>

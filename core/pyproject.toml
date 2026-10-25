@@ -1,0 +1,72 @@
+[project]
+name = "belgian-anonymizer"
+version = "0.1.0"
+description = "Reversible anonymisation of Belgian contracts (PDF) before sending them to LLMs"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "python-multipart>=0.0.9",
+    "pydantic>=2.8",
+    # PDF stack with permissive licences only (no AGPL), so the product can be sold closed-source
+    "docling>=2.40",
+    "pypdfium2>=4.30",
+    # PNG encoding of the page previews
+    "pillow>=10.4",
+    "gliner>=0.2.13",
+    "torch>=2.4",
+    # Used by Docling's layout models; pinned to the CPU wheels like torch
+    "torchvision>=0.19",
+    # Needed by transformers to load the SentencePiece tokenizer of the GLiNER encoder (mdeberta)
+    "protobuf>=4.25",
+    "sentencepiece>=0.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "httpx>=0.27",
+    "ruff>=0.6",
+    "mypy>=1.11",
+    # Builds the synthetic contract PDFs used by tests and samples
+    "reportlab>=4.2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/belgian_anonymizer"]
+
+# CPU-only PyTorch wheels keep the Docker image small (no CUDA libraries)
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+torchvision = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["ner: tests requiring the GLiNER model to be available locally"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+
+# reportlab ships no type hints
+[[tool.mypy.overrides]]
+module = ["reportlab", "reportlab.*"]
+follow_imports = "skip"

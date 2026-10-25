@@ -1,0 +1,13 @@
+<div class="segmented" role="group" [attr.aria-label]="'app.language' | translate">
+  @for (language of languages; track language) {
+    <button
+      type="button"
+      class="segmented__option"
+      [attr.lang]="language"
+      [attr.aria-pressed]="languageService.current() === language"
+      (click)="languageService.use(language)"
+    >
+      {{ language | uppercase }}
+    </button>
+  }
+</div>

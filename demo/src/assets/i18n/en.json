@@ -1,0 +1,53 @@
+{
+  "app": {
+    "createdBy": "Created by",
+    "language": "Language",
+    "newTab": "(opens in a new tab)",
+    "subtitle": "Remove personal data from Belgian documents before sending them to an LLM.",
+    "title": "Belgian document anonymizer"
+  },
+  "comparison": {
+    "anonymized": "Anonymized",
+    "markdown": "Markdown",
+    "original": "Original",
+    "pageAlt": "Page {{page}} of {{total}}",
+    "pagesRegion": "{{label}} pages",
+    "pdf": "PDF",
+    "textRegion": "{{label}} text",
+    "viewMode": "Original document display"
+  },
+  "entityTypes": {
+    "ADDRESS": "Address",
+    "DATE_OF_BIRTH": "Date of birth",
+    "EMAIL": "Email",
+    "ENTERPRISE_NUMBER": "Enterprise number",
+    "IBAN": "Bank account",
+    "ID_CARD_NUMBER": "ID card number",
+    "LICENSE_PLATE": "License plate",
+    "NATIONAL_NUMBER": "National number",
+    "ORGANIZATION": "Organization",
+    "PERSON": "Person",
+    "PHONE": "Phone"
+  },
+  "errors": {
+    "generic": "The document could not be anonymized. Please try again.",
+    "invalidPdf": "This PDF cannot be processed. Scanned or password-protected documents are not supported yet.",
+    "tooLarge": "This file is too large.",
+    "unavailable": "The anonymization service is unavailable. Check that it is running."
+  },
+  "page": {
+    "anonymizing": "Anonymizing {{filename}}…",
+    "anonymizingHint": "Detection runs on this server and takes about one second per page.",
+    "exportMarkdown": "Export Markdown",
+    "newDocument": "New document",
+    "stats": "{{pages}} page(s) · {{entities}} values replaced · {{seconds}} s",
+    "summary": "Replaced values"
+  },
+  "upload": {
+    "browse": "Choose a PDF",
+    "drop": "Drop a document here",
+    "hint": "Text-based PDF, up to {{max}} MB. The file is processed on this server and is never sent to an LLM.",
+    "invalidType": "Only PDF files are supported.",
+    "tooLarge": "This file exceeds {{max}} MB."
+  }
+}
